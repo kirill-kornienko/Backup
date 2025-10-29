@@ -79,7 +79,8 @@ listen web_tcp
 
 #### Перенаправление запросов на разные серверы при обращении к HAProxy
 ![Перенаправление запросов на разные серверы при обращении к HAProxy](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy1.png)`
-![HAProxy statistics](https://github.com/kirill-kornienko/HAProxy/blob/main/img/harpoxy1%20stats.png)`
+
+![HAProxy statistics](https://github.com/kirill-kornienko/HAProxy/blob/main/img/harpoxy1%20stats.png)
 
 
 ---
