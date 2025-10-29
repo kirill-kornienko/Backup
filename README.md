@@ -77,7 +77,7 @@ listen web_tcp
 	server s2 127.0.0.1:9999 check inter 3s
 ```
 
-
+#### Перенаправление запросов на разные серверы при обращении к HAProxy
 ![Перенаправление запросов на разные серверы при обращении к HAProxy](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy1.png)`
 
 
