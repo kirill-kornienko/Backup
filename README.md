@@ -78,7 +78,7 @@ listen web_tcp
 ```
 
 
-![Перенаправление запросов на разные серверы при обращении к HAProxy]([ссылка на скриншот 1](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy1.png)`
+![Перенаправление запросов на разные серверы при обращении к HAProxy](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy1.png)`
 
 
 ---
