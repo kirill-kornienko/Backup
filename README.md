@@ -10,7 +10,7 @@
 
 ### *Решение:*
 
-#### Конфигурационный файл haproxy:
+#### Конфигурационный файл haproxy: [haproxy1.cfg](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy1.cfg)
 ```
 global
 	log /dev/log	local0
