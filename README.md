@@ -13,8 +13,19 @@
 rsync -a --checksum --verbose --delete --progress --exclude '.*' /home/kirill/ /tmp/backup
 ```
 
-![HAProxy statistics](https://github.com/kirill-kornienko/HAProxy/blob/main/img/harpoxy1%20stats.png)
+![1](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync1.png)
 
+![2[(https://github.com/kirill-kornienko/Backup/blob/main/img/rsync2.png)
+
+![3](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync3.png)
+
+![4](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync4.png)
+
+![5](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync5.png)
+
+![6](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync6.png)
+
+![7](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync7.png)
 
 ---
 
