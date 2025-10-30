@@ -31,79 +31,53 @@ rsync -a --checksum --verbose --delete --progress --exclude '.*' /home/kirill/ /
 
 ### Задание 2
 
-* Запустите три simple python сервера на своей виртуальной машине на разных портах
-* Настройте балансировку Weighted Round Robin на 7 уровне, чтобы первый сервер имел вес 2, второй - 3, а третий - 4
-* HAproxy должен балансировать только тот http-трафик, который адресован домену example.local
-* На проверку направьте конфигурационный файл haproxy, скриншоты, где видно перенаправление запросов на разные серверы при обращении к HAProxy c использованием домена example.local и без него.
+* Написать скрипт и настроить задачу на регулярное резервное копирование домашней директории пользователя с помощью rsync и cron.
+* Резервная копия должна быть полностью зеркальной
+* Резервная копия должна создаваться раз в день, в системном логе должна появляться запись об успешном или неуспешном выполнении операции
+* Резервная копия размещается локально, в директории /tmp/backup
+* На проверку направить файл crontab и скриншот с результатом работы утилиты.
 
 
 ### *Решение*
 
-#### Конфигурационный файл haproxy: [haproxy2.cfg](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy2.cfg)
+####  файл crontab: [crontab](https://github.com/kirill-kornienko/Backup/blob/main/img/crontab)
 
 ```
-global
-	log /dev/log	local0
-	log /dev/log	local1 notice
-	chroot /var/lib/haproxy
-	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
-	stats timeout 30s
-	user haproxy
-	group haproxy
-	daemon
-
-	# Default SSL material locations
-	ca-base /etc/ssl/certs
-	crt-base /etc/ssl/private
-
-	# See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
-        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
-        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
-        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
-
-defaults
-	log	global
-	mode	http
-	option	httplog
-	option	dontlognull
-        timeout connect 5000
-        timeout client  50000
-        timeout server  50000
-	errorfile 400 /etc/haproxy/errors/400.http
-	errorfile 403 /etc/haproxy/errors/403.http
-	errorfile 408 /etc/haproxy/errors/408.http
-	errorfile 500 /etc/haproxy/errors/500.http
-	errorfile 502 /etc/haproxy/errors/502.http
-	errorfile 503 /etc/haproxy/errors/503.http
-	errorfile 504 /etc/haproxy/errors/504.http
-
-listen stats  # веб-страница со статистикой
-        bind                    :888
-        mode                    http
-        stats                   enable
-        stats uri               /stats
-        stats refresh           5s
-        stats realm             Haproxy\ Statistics
-
-frontend example  # секция фронтенд
-        mode http
-        bind :8088
-	acl ACL_example.local hdr(host) -i example.local
-	use_backend web_servers if ACL_example.local
-
-backend web_servers    # секция бэкенд
-        mode http
-        balance roundrobin
-        option httpchk
-        http-check send meth GET uri /index.html
-        server s1 127.0.0.1:8888 weight 2 check
-        server s2 127.0.0.1:9999 weight 3 check
-	server s3 127.0.0.1:8989 weight 4 check
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+* * * * * /bin/bash /home/kirill/every_day_backup.sh /home/kirill/ /tmp/backup
 ```
 
-#### Перенаправление запросов на разные серверы при обращении к HAProxy c использованием домена example.local и без него:
+#### Результат работы утилиты:
 
-![haproxy2](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy2.png)
+![1](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync-cron.png)
+
+![2](https://github.com/kirill-kornienko/Backup/blob/main/img/rsynk-cron%20ll.png)
+
+![3](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync-cron%20ll2.png)
+
+![4](https://github.com/kirill-kornienko/Backup/blob/main/img/rsynk-cron%20lltmp.png)
 
 ![haproxy stats2](https://github.com/kirill-kornienko/HAProxy/blob/main/img/haproxy2%20stats.png)
 
