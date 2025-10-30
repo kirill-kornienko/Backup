@@ -66,18 +66,24 @@ rsync -a --checksum --verbose --delete --progress --exclude '.*' /home/kirill/ /
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-* * * * * /bin/bash /home/kirill/every_day_backup.sh /home/kirill/ /tmp/backup
+05 16 * * * /bin/bash /home/kirill/every_day_backup.sh /home/kirill/ /tmp/backup
 ```
 
 #### Результат работы утилиты:
 
-![1](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync-cron.png)
+![1](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161339.png)
 
-![2](https://github.com/kirill-kornienko/Backup/blob/main/img/rsynk-cron%20ll.png)
+![2](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161352.png)
 
-![3](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync-cron%20ll2.png)
+![3](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161401.png)
 
-![4](https://github.com/kirill-kornienko/Backup/blob/main/img/rsynk-cron%20lltmp.png)
+![4](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161412.png)
+
+![5](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161547.png)
+
+![6](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161555.png)
+
+![7](https://github.com/kirill-kornienko/Backup/blob/main/img/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-10-30%20161618.png)
 
 
 ---
