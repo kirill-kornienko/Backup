@@ -15,7 +15,7 @@ rsync -a --checksum --verbose --delete --progress --exclude '.*' /home/kirill/ /
 
 ![1](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync1.png)
 
-![2[(https://github.com/kirill-kornienko/Backup/blob/main/img/rsync2.png)
+![2](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync2.png)
 
 ![3](https://github.com/kirill-kornienko/Backup/blob/main/img/rsync3.png)
 
